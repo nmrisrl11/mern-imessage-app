@@ -2,7 +2,7 @@ import express from "express";
 import "dotenv/config";
 import { clerkMiddleware } from "@clerk/express";
 import cors from "cors";
-import { connectDB } from "./lib/db.js";
+import { connectDB } from "./lib/db";
 
 const app = express();
 const PORT = process.env.PORT || 3001;
