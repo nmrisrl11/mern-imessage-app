@@ -1,5 +1,5 @@
 import { verifyWebhook } from "@clerk/backend/webhooks";
-import express from "express";
+import { Router } from "express";
 import User from "../models/user.model";
 
 const CLERK_WEBHOOK_SIGNING_SECRET = process.env.CLERK_WEBHOOK_SIGNING_SECRET;
@@ -8,9 +8,9 @@ if (!CLERK_WEBHOOK_SIGNING_SECRET) {
 	throw new Error("Set your Clerk Webhook Signing Secret to .env file");
 }
 
-const router = express.Router();
+export const clerkWebhookRouter = Router();
 
-router.post("/", async (req, res) => {
+clerkWebhookRouter.post("/", async (req, res) => {
 	try {
 		if (!CLERK_WEBHOOK_SIGNING_SECRET) {
 			res.status(503).json({ message: "Clerk Webhook Signing Secret is not provided." });
@@ -63,5 +63,3 @@ router.post("/", async (req, res) => {
 		res.status(400).json({ message: "Webhook verification failed." });
 	}
 });
-
-export default router;
