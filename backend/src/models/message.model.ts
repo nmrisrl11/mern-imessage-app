@@ -1,6 +1,14 @@
-import mongoose from "mongoose";
+import mongoose, { type Document, type Types } from "mongoose";
 
-const messageSchema = new mongoose.Schema(
+export interface IMessage extends Document {
+	senderId: Types.ObjectId;
+	receiverId: Types.ObjectId;
+	text?: string;
+	image?: string;
+	video?: string;
+}
+
+const messageSchema = new mongoose.Schema<IMessage>(
 	{
 		senderId: {
 			type: mongoose.Schema.Types.ObjectId,
@@ -25,6 +33,6 @@ const messageSchema = new mongoose.Schema(
 	{ timestamps: true },
 );
 
-const Message = mongoose.model("Message", messageSchema);
+const Message = mongoose.model<IMessage>("Message", messageSchema);
 
 export default Message;
