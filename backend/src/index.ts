@@ -6,11 +6,14 @@ import { clerkMiddleware } from "@clerk/express";
 import cors from "cors";
 import job from "./lib/cron";
 import { connectDB } from "./lib/db";
+import clerkWebhook from "./webhooks/clerk.webhook";
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 const FRONTEND_URL = process.env.FRONTEND_URL;
 const PUBLIC_DIR = path.join(process.cwd(), "public");
+
+app.use("/api/webhooks/clerk", express.raw({ type: "application/json" }), clerkWebhook);
 
 app.use(cors({ origin: FRONTEND_URL, credentials: true }));
 app.use(express.json());
