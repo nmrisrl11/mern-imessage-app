@@ -4,6 +4,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { clerkMiddleware } from "@clerk/express";
 import cors from "cors";
+import job from "./lib/cron";
 import { connectDB } from "./lib/db";
 
 const app = express();
@@ -35,6 +36,10 @@ const startServer = async () => {
 	app.listen(PORT, () => {
 		console.log(`Server is up and running on port ${PORT}`);
 	});
+
+	if (process.env.NODE_ENV === "production") {
+		job.start();
+	}
 };
 
 startServer();
