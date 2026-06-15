@@ -6,11 +6,11 @@ import { clerkMiddleware } from "@clerk/express";
 import cors from "cors";
 import job from "./lib/cron";
 import { connectDB } from "./lib/db";
+import { app, server } from "./lib/socket";
 import { authRoutes } from "./routes/auth.route";
 import { messageRoutes } from "./routes/message.route";
 import { clerkWebhookRouter } from "./webhooks/clerk.webhook";
 
-const app = express();
 const PORT = process.env.PORT || 3001;
 const FRONTEND_URL = process.env.FRONTEND_URL;
 const PUBLIC_DIR = path.join(process.cwd(), "public");
@@ -42,7 +42,7 @@ if (fs.existsSync(PUBLIC_DIR)) {
 const startServer = async () => {
 	await connectDB();
 
-	app.listen(PORT, () => {
+	server.listen(PORT, () => {
 		console.log(`Server is up and running on port ${PORT}`);
 	});
 
