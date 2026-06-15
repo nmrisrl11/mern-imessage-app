@@ -1,5 +1,6 @@
 import type { NextFunction, Request, Response } from "express";
 import { hasImageKitConfig, uploadChatMedia } from "../lib/imagekit";
+import { getReceiverSocketId, io } from "../lib/socket";
 import Message from "../models/message.model";
 import User from "../models/user.model";
 
@@ -115,6 +116,13 @@ export const sendMessage = async (req: Request, res: Response, next: NextFunctio
 		});
 
 		await newMessage.save();
+
+		const receiverSocketId = getReceiverSocketId(receiverId);
+
+		//! Only send the message in realtime if user if online
+		if (receiverSocketId) {
+			io.to(receiverSocketId).emit("newMessage", newMessage);
+		}
 
 		res.status(201).json(newMessage);
 	} catch (error) {
