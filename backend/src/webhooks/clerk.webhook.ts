@@ -2,9 +2,9 @@ import { verifyWebhook } from "@clerk/backend/webhooks";
 import { Router } from "express";
 import User from "../models/user.model";
 
-const CLERK_WEBHOOK_SIGNING_SECRET = process.env.CLERK_WEBHOOK_SIGNING_SECRET;
+const clerkWebhookSigningSecret = process.env.CLERK_WEBHOOK_SIGNING_SECRET;
 
-if (!CLERK_WEBHOOK_SIGNING_SECRET) {
+if (!clerkWebhookSigningSecret) {
 	throw new Error("Set your Clerk Webhook Signing Secret to .env file");
 }
 
@@ -12,7 +12,7 @@ export const clerkWebhookRouter = Router();
 
 clerkWebhookRouter.post("/", async (req, res) => {
 	try {
-		if (!CLERK_WEBHOOK_SIGNING_SECRET) {
+		if (!clerkWebhookSigningSecret) {
 			res.status(503).json({ message: "Clerk Webhook Signing Secret is not provided." });
 			return;
 		}
@@ -37,7 +37,7 @@ clerkWebhookRouter.post("/", async (req, res) => {
 		});
 
 		//! Throws if the signature is wrong or the body was tampered with; only then do we trust event.
-		const event = await verifyWebhook(request, { signingSecret: CLERK_WEBHOOK_SIGNING_SECRET });
+		const event = await verifyWebhook(request, { signingSecret: clerkWebhookSigningSecret });
 
 		if (event.type === "user.created" || event.type === "user.updated") {
 			const user = event.data;

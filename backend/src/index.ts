@@ -7,6 +7,7 @@ import cors from "cors";
 import job from "./lib/cron";
 import { connectDB } from "./lib/db";
 import { authRoutes } from "./routes/auth.route";
+import { messageRoutes } from "./routes/message.route";
 import { clerkWebhookRouter } from "./webhooks/clerk.webhook";
 
 const app = express();
@@ -26,6 +27,7 @@ app.get("/health", (req, res) => {
 
 //! Auth Routes
 app.use("/api/auth", authRoutes);
+app.use("/api/messages", messageRoutes);
 
 if (fs.existsSync(PUBLIC_DIR)) {
 	app.use(express.static(PUBLIC_DIR));
