@@ -3,19 +3,10 @@ export interface WallpaperSection {
 	title: string;
 }
 
-export interface Wallpaper {
-	id: string;
-	category: string;
-	label: string;
-	url: string;
-}
-
 export const WALLPAPER_SECTIONS = [
 	{ id: "desktop", title: "Desktop" },
 	{ id: "abstract", title: "Abstract" },
 ] as const satisfies readonly WallpaperSection[];
-
-export type WallpaperCategory = (typeof WALLPAPER_SECTIONS)[number]["id"];
 
 export const WALLPAPERS = [
 	{
@@ -96,9 +87,11 @@ export const WALLPAPERS = [
 		label: "Ventura Dark",
 		url: "/wallpapers/ventura-dark.jpg",
 	},
-] as const satisfies readonly Wallpaper[];
+] as const;
 
-export type WallpaperId = (typeof WALLPAPERS)[number]["id"];
+export type Wallpaper = (typeof WALLPAPERS)[number];
+export type WallpaperId = Wallpaper["id"];
+export type WallpaperCategory = Wallpaper["category"];
 
 export function frameStyleFromUrl(url: string): React.CSSProperties {
 	return {
