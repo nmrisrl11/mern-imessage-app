@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 import { createContext, useContext } from "react";
-import type { getWallpaperById, WallpaperId } from "../data/wallpapers";
+import type { getWallpaperById } from "@/lib/utils";
+import type { WallpaperId } from "../data/wallpapers";
 
 type Wallpaper = ReturnType<typeof getWallpaperById>;
 
