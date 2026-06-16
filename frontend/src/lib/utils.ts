@@ -1,6 +1,19 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { WALLPAPERS, type WallpaperId } from "@/data/wallpapers";
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
+}
+
+export function frameStyleFromUrl(url: string): React.CSSProperties {
+	return {
+		backgroundImage: `url("${url}")`,
+		backgroundSize: "cover",
+		backgroundPosition: "center",
+	};
+}
+
+export function getWallpaperById(id: WallpaperId): (typeof WALLPAPERS)[number] {
+	return WALLPAPERS.find((w) => w.id === id) ?? WALLPAPERS[0];
 }
