@@ -17,14 +17,8 @@ export function ChatHeader() {
 
 	return (
 		<header className="sticky top-0 z-10 flex shrink-0 flex-wrap items-center gap-1 border-b border-border px-1.5 py-1.5 sm:gap-2 sm:px-2 sm:py-2">
-			{activeConversation && !isLargeScreen ? (
-				<Button variant="ghost" size="sm" isIconOnly className="shrink-0" onPress={() => setActiveConversationId(null)}>
-					<ChevronLeftIcon className="size-6" strokeWidth={2.25} />
-				</Button>
-			) : null}
-
 			{activeConversation ? (
-				<>
+				<div className="flex max-sm:justify-center max-sm:w-full max-sm:flex-col items-center gap-1.5">
 					<AvatarWithOnlineIndicator isOnline={activeConversation.peer.isOnline ?? true}>
 						<Avatar className="size-9 shrink-0">
 							<Avatar.Image alt={activeConversation.peer.name} src={activeConversation.peer.avatarUrl} />
@@ -32,13 +26,13 @@ export function ChatHeader() {
 						</Avatar>
 					</AvatarWithOnlineIndicator>
 
-					<div className="flex-1 text-center sm:text-left">
+					<div className="text-center sm:text-left">
 						<p className="truncate text-[15px] font-semibold leading-tight">{activeConversation.peer.name}</p>
 						<p className="truncate text-xs text-muted">
 							{activeConversation.peer.isOnline ? <span className="font-medium text-success">Online</span> : "Offline"}
 						</p>
 					</div>
-				</>
+				</div>
 			) : (
 				<div className="flex flex-1 items-center gap-2.5 sm:text-left">
 					<AppLogo size={36} className="rounded-[9px]" />
@@ -48,7 +42,13 @@ export function ChatHeader() {
 				</div>
 			)}
 
-			<div className="ml-auto flex max-w-full shrink-0 flex-wrap items-center justify-end gap-0.5 sm:gap-1">
+			<div className="ml-auto max-sm:ml-0 flex max-w-full max-sm:w-full shrink-0 flex-wrap items-center justify-end max-sm:justify-center gap-0.5 sm:gap-1">
+				{activeConversation && !isLargeScreen ? (
+					<Button variant="ghost" size="sm" isIconOnly className="shrink-0" onPress={() => setActiveConversationId(null)}>
+						<ChevronLeftIcon className="size-6" strokeWidth={2.25} />
+					</Button>
+				) : null}
+
 				<div className="hidden min-[400px]:contents">
 					<WallpaperPicker />
 					<ThemePresetPicker />
