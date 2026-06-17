@@ -1,5 +1,9 @@
 # iMessage App
 
+<p align="center">
+  <img src="./imessage-app-cover.webp" alt="Cover Image" />
+</p>
+
 A full-stack real-time messaging application inspired by Apple's iMessage experience. Built with modern web technologies, this project features authentication, real-time communication, media sharing, and a responsive user interface.
 
 > This project was originally built by following a crash course tutorial and has since been customized and enhanced with a TypeScript-first architecture, improved project structure, and modern developer tooling including Biome for linting and formatting.
