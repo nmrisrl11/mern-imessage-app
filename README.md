@@ -15,12 +15,16 @@ A full-stack real-time messaging application inspired by Apple's iMessage experi
 * 🖼️ Image sharing and media uploads
 * 👤 User profile management
 * 🟢 Online user presence
+* 🌐 Multilingual support with i18next (language detection & HTTP backend)
 * 📱 Responsive and modern UI
 * ⚡ Fast frontend powered by Vite
 * 🎨 Beautiful components using HeroUI
 * 🔄 Global state management with Zustand
 * 🛡️ Fully typed codebase with TypeScript
 * 🧹 Consistent code quality with Biome
+* 🔀 Client-side routing with React Router v7
+* 🧩 Utility-first styling with Tailwind CSS, clsx, and tailwind-merge
+* 🔌 API communication via Axios
 
 ## 🛠️ Tech Stack
 
@@ -32,10 +36,16 @@ A full-stack real-time messaging application inspired by Apple's iMessage experi
 * React Router v7
 * HeroUI
 * Tailwind CSS v4
+* clsx
+* tailwind-merge
 * Zustand
 * Socket.IO Client
-* Clerk Authentication
+* Clerk Authentication (@clerk/react)
 * Axios
+* i18next
+* react-i18next
+* i18next-browser-languagedetector
+* i18next-http-backend
 * Lucide React
 * React Hot Toast
 
