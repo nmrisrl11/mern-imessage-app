@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
 
 interface AvatarWithOnlineIndicatorProps {
@@ -12,6 +13,10 @@ interface AvatarWithOnlineIndicatorProps {
  */
 
 export function AvatarWithOnlineIndicator({ isOnline, children, dotClassName = "" }: AvatarWithOnlineIndicatorProps) {
+	const { t: Translate } = useTranslation("translation", {
+		keyPrefix: "Text",
+	});
+
 	return (
 		<div className="relative inline-flex shrink-0">
 			{children}
@@ -23,7 +28,7 @@ export function AvatarWithOnlineIndicator({ isOnline, children, dotClassName = "
 				)}
 				aria-hidden
 			/>
-			<span className="sr-only">{isOnline ? "Online" : "Offline"}</span>
+			<span className="sr-only">{isOnline ? Translate("Online") : Translate("Offline")}</span>
 		</div>
 	);
 }

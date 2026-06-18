@@ -1,14 +1,20 @@
 import { Avatar, Button } from "@heroui/react";
 import { ChevronLeftIcon, Volume2Icon, VolumeXIcon, XIcon } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { useSelectedConversation } from "@/hooks/use-selected-conversation";
 import { useChatStore } from "@/store/use-chat-store";
 import { AppLogo } from "../app-logo";
+import LanguagePicker from "../language-picker";
 import { ThemePresetPicker } from "../theme-preset-picker";
 import { ThemeToggle } from "../theme-toggle";
 import { WallpaperPicker } from "../wallpaper-picker";
 import { AvatarWithOnlineIndicator } from "./avatar-with-online-indicator";
 
 export function ChatHeader() {
+	const { t: Translate } = useTranslation("translation", {
+		keyPrefix: "Text",
+	});
+
 	const isSoundEnabled = useChatStore((state) => state.isSoundEnabled);
 	const setActiveConversationId = useChatStore((state) => state.setActiveConversationId);
 	const setSoundEnabled = useChatStore((state) => state.setSoundEnabled);
@@ -29,7 +35,7 @@ export function ChatHeader() {
 					<div className="text-center sm:text-left">
 						<p className="truncate text-[15px] font-semibold leading-tight">{activeConversation.peer.name}</p>
 						<p className="truncate text-xs text-muted">
-							{activeConversation.peer.isOnline ? <span className="font-medium text-success">Online</span> : "Offline"}
+							{activeConversation.peer.isOnline ? <span className="font-medium text-success">{Translate("Online")}</span> : Translate("Offline")}
 						</p>
 					</div>
 				</div>
@@ -37,7 +43,7 @@ export function ChatHeader() {
 				<div className="flex flex-1 items-center gap-2.5 sm:text-left">
 					<AppLogo size={36} className="rounded-[9px]" />
 					<div className="flex-1 text-center sm:text-left">
-						<p className="truncate text-[13px] font-medium text-muted">Select a conversation</p>
+						<p className="truncate text-[13px] font-medium text-muted">{Translate("Select a conversation")}</p>
 					</div>
 				</div>
 			)}
@@ -48,6 +54,8 @@ export function ChatHeader() {
 						<ChevronLeftIcon className="size-6" strokeWidth={2.25} />
 					</Button>
 				) : null}
+
+				<LanguagePicker />
 
 				<div className="hidden min-[400px]:contents">
 					<WallpaperPicker />

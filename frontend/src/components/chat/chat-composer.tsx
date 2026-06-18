@@ -1,11 +1,16 @@
 import { Button, TextArea } from "@heroui/react";
 import { ImageIcon, LoaderIcon, SendHorizontalIcon } from "lucide-react";
 import { type ChangeEvent, type KeyboardEvent, useRef } from "react";
+import { useTranslation } from "react-i18next";
 import useKeyboardSound from "@/hooks/use-keyboard-sound";
 import { useSelectedConversation } from "@/hooks/use-selected-conversation";
 import { useChatStore } from "@/store/use-chat-store";
 
 export function ChatComposer() {
+	const { t: Translate } = useTranslation("translation", {
+		keyPrefix: "Text",
+	});
+
 	const composerText = useChatStore((state) => state.composerText);
 	const isSoundEnabled = useChatStore((state) => state.isSoundEnabled);
 	const sendMediaMessage = useChatStore((state) => state.sendMediaMessage);
@@ -51,7 +56,7 @@ export function ChatComposer() {
 			{isSendingMedia ? (
 				<div className="mx-auto mb-2 flex max-w-full items-center gap-2 rounded-xl border border-border bg-surface px-3 py-2 text-sm text-muted">
 					<LoaderIcon className="size-4 shrink-0 animate-spin text-accent" strokeWidth={2} aria-hidden />
-					<span className="truncate">Uploading media...</span>
+					<span className="truncate">{Translate("Uploading media")}</span>
 				</div>
 			) : null}
 			<div className="mx-auto flex w-full max-w-full items-end gap-1.5 px-0.5 sm:gap-2 sm:px-1">
@@ -77,7 +82,7 @@ export function ChatComposer() {
 				<TextArea
 					fullWidth
 					variant="secondary"
-					placeholder="iMessage"
+					placeholder={Translate("Send a message")}
 					rows={1}
 					value={composerText}
 					onChange={handleComposerTextChange}
