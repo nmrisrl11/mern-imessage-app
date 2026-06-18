@@ -92,7 +92,7 @@ export function ChatComposer() {
 							handleSend();
 						}
 					}}
-					className="flex-1 rounded-full"
+					className="flex-1 rounded-2xl resize-none field-sizing-content min-h-6 max-h-37.5"
 				/>
 
 				<Button variant="primary" isIconOnly isDisabled={!composerText.trim()} onPress={handleSend}>
