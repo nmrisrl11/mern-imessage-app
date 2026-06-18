@@ -3,6 +3,7 @@ import type { Clerk } from "@clerk/react/types";
 import { Button } from "@heroui/react";
 import { ArrowRightIcon, ShieldCheckIcon, SparklesIcon } from "lucide-react";
 import type { JSX } from "react";
+import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
 import { AppLogo } from "../app-logo";
 import { AuthCardShell } from "./auth-card-shell";
@@ -10,6 +11,10 @@ import { AuthCardShell } from "./auth-card-shell";
 const AFTER_AUTH: string = "/";
 
 export function AuthActionPanel(): JSX.Element {
+	const { t: Translate } = useTranslation("translation", {
+		keyPrefix: "Text",
+	});
+
 	const clerk: Clerk = useClerk();
 
 	const handleContinue = (): void => {
@@ -41,7 +46,7 @@ export function AuthActionPanel(): JSX.Element {
 
 					<div className="flex items-center justify-center gap-1.5 text-accent">
 						<SparklesIcon className="size-3.5" strokeWidth={2} aria-hidden />
-						<span className="text-[11px] font-semibold uppercase tracking-[0.18em]">Secure entry</span>
+						<span className="text-[11px] font-semibold uppercase tracking-[0.18em]">{Translate("Secure entry")}</span>
 					</div>
 				</div>
 
@@ -59,14 +64,14 @@ export function AuthActionPanel(): JSX.Element {
 					onPress={handleContinue}
 				>
 					<span className="relative z-1 flex items-center justify-center gap-2">
-						Continue
+						{Translate("Continue")}
 						<ArrowRightIcon className="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
 					</span>
 				</Button>
 
 				<div className="mt-8 flex items-center justify-center gap-2 border-t border-black/6 pt-6 text-[11px] text-[#8E8E93] dark:border-white/8 dark:text-[#636366]">
 					<ShieldCheckIcon className="size-3.5 shrink-0 text-[#34C759] dark:text-[#30D158]" strokeWidth={2} aria-hidden />
-					<span>Protected session · TLS encryption</span>
+					<span>{Translate("Protected session · TLS encryption")}</span>
 				</div>
 			</AuthCardShell>
 		</section>

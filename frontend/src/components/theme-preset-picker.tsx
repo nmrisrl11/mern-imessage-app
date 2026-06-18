@@ -1,10 +1,15 @@
 import { Button, Modal, useOverlayState } from "@heroui/react";
 import { Check, Palette } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { applyThemePresetToDocument, useTheme } from "@/context/theme";
 import { HERO_UI_THEME_PRESETS, type ThemePresetId } from "@/data/heroui-theme-presets";
 import { cn } from "@/lib/utils";
 
 export function ThemePresetPicker() {
+	const { t: Translate } = useTranslation("translation", {
+		keyPrefix: "Text",
+	});
+
 	const modal = useOverlayState();
 	const { themePreset, setThemePreset } = useTheme();
 
@@ -26,12 +31,14 @@ export function ThemePresetPicker() {
 				<Modal.Container size="md" scroll="inside" placement="center">
 					<Modal.Dialog className="max-h-[85dvh] border border-white/10 bg-[#2a2a2c] text-foreground shadow-2xl">
 						<Modal.Header className="flex flex-row items-center justify-between gap-3 border-b border-white/10 pb-3">
-							<Modal.Heading className="text-lg font-semibold tracking-tight text-white">Accent theme</Modal.Heading>
+							<Modal.Heading className="text-lg font-semibold tracking-tight text-white">{Translate("Accent theme")}</Modal.Heading>
 							<Modal.CloseTrigger />
 						</Modal.Header>
 
 						<Modal.Body className="isolate pt-4">
-							<p className="mb-4 text-sm text-zinc-400">HeroUI components use the accent color for primary actions and focus.</p>
+							<p className="mb-4 text-sm text-zinc-400">
+								{Translate("Add a splash of personality with a color that highlights actions and interactive elements")}
+							</p>
 
 							<div className="grid grid-cols-3 gap-4 sm:grid-cols-4">
 								{HERO_UI_THEME_PRESETS.map((p) => {

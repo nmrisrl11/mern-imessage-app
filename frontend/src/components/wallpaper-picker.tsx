@@ -1,6 +1,7 @@
 import { Button, Modal, useOverlayState } from "@heroui/react";
 import { Check, ImageIcon } from "lucide-react";
 import { useTransition } from "react";
+import { useTranslation } from "react-i18next";
 import { useWallpaper } from "@/context/wallpaper";
 import { WALLPAPER_SECTIONS, WALLPAPERS, type Wallpaper, type WallpaperId } from "@/data/wallpapers";
 import { cn } from "@/lib/utils";
@@ -50,6 +51,10 @@ function WallpaperThumb({ wallpaper, selected, onSelect }: WallpaperThumbProps) 
 }
 
 export function WallpaperPicker() {
+	const { t: Translate } = useTranslation("translation", {
+		keyPrefix: "Text",
+	});
+
 	const modal = useOverlayState();
 	const { wallpaperId, setWallpaperId } = useWallpaper();
 	const [, startTransition] = useTransition();
@@ -74,14 +79,14 @@ export function WallpaperPicker() {
 				<Modal.Container size="lg" scroll="inside" placement="center">
 					<Modal.Dialog className="max-h-[85dvh] border border-white/10 bg-[#2a2a2c] text-foreground shadow-2xl">
 						<Modal.Header className="flex flex-row items-center justify-between gap-3 border-b border-white/10 pb-3">
-							<Modal.Heading className="text-lg font-semibold tracking-tight text-white">Backdrop</Modal.Heading>
+							<Modal.Heading className="text-lg font-semibold tracking-tight text-white">{Translate("Backdrop")}</Modal.Heading>
 							<Modal.CloseTrigger />
 						</Modal.Header>
 
 						<Modal.Body className="isolate space-y-8 pt-4">
 							{WALLPAPER_SECTIONS.map((section) => (
 								<section key={section.id} className="space-y-3">
-									<h3 className="text-sm font-medium text-zinc-400">{section.title}</h3>
+									<h3 className="text-sm font-medium text-zinc-400">{Translate(section.title)}</h3>
 
 									<div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4">
 										{WALLPAPERS.filter((w) => w.category === section.id).map((w) => (

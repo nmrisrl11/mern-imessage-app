@@ -1,5 +1,18 @@
 {
 	"Text": {
+		"Abstract": "Abstrait",
+		"Accent theme": "Thème Accent",
+		"Add a splash of personality with a color that highlights actions and interactive elements": "Apportez une touche personnelle avec une couleur qui met en valeur les actions et les éléments interactifs.",
+		"Backdrop": "Contexte",
+		"Chats, photos, and reactions stay in sync—sign in on the right to continue": "Les discussions, les photos et les réactions restent synchronisées — connectez-vous à droite pour continuer.",
+		"Continue": "Continuer",
+		"Desktop": "Bureau",
+		"End-to-end session · Encrypted in transit": "Session de bout en bout · Chiffrement en transit",
+		"Open": "Ouvrir",
+		"Private session": "Séance privée",
+		"Protected session · TLS encryption": "Session protégée · Chiffrement TLS",
+		"Secure entry": "Entrée sécurisée",
+		"Secure gateway": "Passerelle sécurisée",
 		"Select Language": "Choisir la langue"
 	}
 }
