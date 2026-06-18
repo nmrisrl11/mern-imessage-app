@@ -2,6 +2,7 @@ import { UserButton } from "@clerk/react";
 import { SearchField, Tabs } from "@heroui/react";
 import { MessageSquareIcon, UsersIcon } from "lucide-react";
 import type { Key } from "react";
+import { useTranslation } from "react-i18next";
 import { APP_DATA } from "@/data/app-data";
 import { getInitials, useSelectedConversation } from "@/hooks/use-selected-conversation";
 import { cn } from "@/lib/utils";
@@ -43,6 +44,10 @@ function mapUserForList(user: User, onlineUsers: string[]): MappedSidebarUser {
 }
 
 function ChatSidebar() {
+	const { t: Translate } = useTranslation("translation", {
+		keyPrefix: "Text",
+	});
+
 	const conversations = useChatStore((state) => state.conversations);
 	const users = useChatStore((state) => state.users);
 
@@ -100,7 +105,7 @@ function ChatSidebar() {
 					<SearchField fullWidth variant="secondary" className="w-full" value={searchQuery} onChange={setSearchQuery}>
 						<SearchField.Group className="rounded-xl">
 							<SearchField.SearchIcon />
-							<SearchField.Input placeholder="Search" />
+							<SearchField.Input placeholder={Translate("Search")} />
 							{searchQuery ? <SearchField.ClearButton /> : null}
 						</SearchField.Group>
 					</SearchField>
@@ -110,18 +115,18 @@ function ChatSidebar() {
 					<Tabs.List className="w-full gap-0.5">
 						<Tabs.Tab id="chats" className="flex-1 justify-center gap-1.5">
 							<MessageSquareIcon className="size-3.5 opacity-80" aria-hidden />
-							Chats
+							{Translate("Chats")}
 						</Tabs.Tab>
 						<Tabs.Tab id="users" className="flex-1 justify-center gap-1.5">
 							<UsersIcon className="size-3.5 opacity-80" aria-hidden />
-							Users
+							{Translate("Users")}
 						</Tabs.Tab>
 					</Tabs.List>
 				</Tabs.ListContainer>
 
 				<Tabs.Panel id="chats" className="flex-1 overflow-x-hidden overflow-y-auto outline-none">
 					{filteredConversations.length === 0 ? (
-						<p className="px-4 py-6 text-center text-sm text-muted">No conversations match your search.</p>
+						<p className="px-4 py-6 text-center text-sm text-muted">{Translate("No conversations match your search")}</p>
 					) : (
 						filteredConversations.map((conversation) => (
 							<ConversationRow
@@ -136,7 +141,7 @@ function ChatSidebar() {
 
 				<Tabs.Panel id="users" className="flex-1 overflow-x-hidden overflow-y-auto outline-none">
 					{filteredUsers.length === 0 ? (
-						<p className="px-4 py-6 text-center text-sm text-muted">No people match your search.</p>
+						<p className="px-4 py-6 text-center text-sm text-muted">{Translate("No people match your search")}</p>
 					) : (
 						filteredUsers.map((user) => (
 							<ConversationRow

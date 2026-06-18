@@ -10,7 +10,6 @@ export default function LanguagePicker() {
 
 	return (
 		<Select
-			className="w-full"
 			placeholder={Translate("Select Language")}
 			value={i18n.resolvedLanguage}
 			onChange={(value: Key | null) => {
