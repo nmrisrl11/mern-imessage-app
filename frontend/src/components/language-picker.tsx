@@ -45,7 +45,7 @@ export default function LanguagePicker() {
 				<Select.Indicator />
 			</Select.Trigger>
 
-			<Select.Popover>
+			<Select.Popover className="w-52">
 				<ListBox>
 					<ListBox.Section>
 						<Header>{Translate("Select Language")}</Header>

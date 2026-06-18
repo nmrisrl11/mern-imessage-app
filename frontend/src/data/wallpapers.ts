@@ -1,6 +1,8 @@
+import type { TextNamespaceKeys } from "@/types/i18n.type";
+
 export interface WallpaperSection {
 	id: string;
-	title: string;
+	title: TextNamespaceKeys;
 }
 
 export const WALLPAPER_SECTIONS = [
