@@ -1,3 +1,8 @@
+import FlagFrance from "@/components/icons/flag-france";
+import FlagGermany from "@/components/icons/flag-germany";
+import FlagJapan from "@/components/icons/flag-japan";
+import FlagPortugal from "@/components/icons/flag-portugal";
+import FlagSpain from "@/components/icons/flag-spain";
 import FlagUSA from "@/components/icons/flag-usa";
 
 export interface LanguagesProps {
@@ -15,26 +20,26 @@ export const Languages: LanguagesProps[] = [
 	{
 		label: "Spanish",
 		languageCode: "es-ES",
-		icon: <FlagUSA className="size-5" />,
+		icon: <FlagSpain className="size-5" />,
 	},
 	{
 		label: "French",
 		languageCode: "fr-FR",
-		icon: <FlagUSA className="size-5" />,
+		icon: <FlagFrance className="size-5" />,
 	},
 	{
 		label: "Portuguese",
 		languageCode: "pt-PT",
-		icon: <FlagUSA className="size-5" />,
+		icon: <FlagPortugal className="size-5" />,
 	},
 	{
 		label: "German",
 		languageCode: "de-DE",
-		icon: <FlagUSA className="size-5" />,
+		icon: <FlagGermany className="size-5" />,
 	},
 	{
 		label: "Japanese",
 		languageCode: "ja-JP",
-		icon: <FlagUSA className="size-5" />,
+		icon: <FlagJapan className="size-5" />,
 	},
 ];
