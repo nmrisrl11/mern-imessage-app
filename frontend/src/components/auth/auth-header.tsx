@@ -1,5 +1,6 @@
 import { APP_DATA } from "@/data/app-data";
 import { AppLogo } from "../app-logo";
+import LanguagePicker from "../language-picker";
 import { ThemePresetPicker } from "../theme-preset-picker";
 import { ThemeToggle } from "../theme-toggle";
 import { WallpaperPicker } from "../wallpaper-picker";
@@ -17,6 +18,8 @@ function AuthHeader() {
 			</div>
 
 			<div className="flex shrink-0 items-center gap-0.5">
+				<LanguagePicker />
+
 				<WallpaperPicker />
 
 				<ThemePresetPicker />

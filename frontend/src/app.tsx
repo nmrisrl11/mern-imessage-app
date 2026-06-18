@@ -7,6 +7,7 @@ import { ThemeProvider } from "./context/theme-context";
 import { WallpaperProvider } from "./context/wallpaper-context";
 import AuthPage from "./pages/auth-page";
 import ChatPage from "./pages/chat-page";
+import NotFoundPage from "./pages/not-found";
 import { useAuthStore } from "./store/use-auth-store";
 
 function App() {
@@ -30,6 +31,8 @@ function App() {
 				<Routes>
 					<Route path="/" element={isSignedIn ? <ChatPage /> : <Navigate to="/auth" replace />} />
 					<Route path="/auth" element={!isSignedIn ? <AuthPage /> : <Navigate to="/" replace />} />
+
+					<Route path="*" element={<NotFoundPage />} />
 				</Routes>
 
 				<Toaster />
