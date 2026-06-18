@@ -18,6 +18,7 @@ export default function LanguagePicker() {
 					i18n.changeLanguage(value.toString());
 				}
 			}}
+			aria-label={Translate("Select Language")}
 		>
 			<Select.Trigger className="bg-transparent shadow-none">
 				<Select.Value>
