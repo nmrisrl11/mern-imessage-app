@@ -23,6 +23,7 @@ A full-stack real-time messaging application inspired by Apple's iMessage experi
 * 🛡️ Fully typed codebase with TypeScript
 * 🧹 Consistent code quality with Biome
 * 🔀 Client-side routing with React Router v7
+* 🚫 Custom 404 Not Found page for unmatched routes
 * 🧩 Utility-first styling with Tailwind CSS, clsx, and tailwind-merge
 * 🔌 API communication via Axios
 
