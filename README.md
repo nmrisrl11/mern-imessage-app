@@ -6,7 +6,7 @@
 
 A full-stack real-time messaging application inspired by Apple's iMessage experience. Built with modern web technologies, this project features authentication, real-time communication, media sharing, and a responsive user interface.
 
-> This project was originally built by following a crash course tutorial and has since been customized and enhanced with a TypeScript-first architecture, improved project structure, and modern developer tooling including Biome for linting and formatting.
+> This project was originally built by following a crash course tutorial and has since been customized and enhanced with a TypeScript-first architecture, improved project structure, and modern developer tooling including Biome, Husky, and lint-staged for automated code quality enforcement.
 
 ## ✨ Features
 
@@ -68,6 +68,8 @@ A full-stack real-time messaging application inspired by Apple's iMessage experi
 ### Development Tools
 
 * Biome (Linting & Formatting)
+* Husky (Git Hooks)
+* lint-staged
 * TypeScript Compiler
 * TSX
 * Babel React Compiler
@@ -162,19 +164,56 @@ Backend:  http://localhost:5000
 
 ## 🧹 Code Quality
 
-This project uses **Biome** for maintaining code consistency and formatting.
+This project uses **Biome** for formatting, linting, and code quality checks.
 
-Format the codebase:
+Format the entire codebase:
+
+```bash
+npm run format
+```
+
+Run Biome checks:
+
+```bash
+npm run format:check
+```
+
+Run linting:
+
+```bash
+npm run lint
+```
+
+You can also use Biome directly:
 
 ```bash
 npx biome format --write .
+npx biome check .
+npx biome lint .
 ```
 
-Run linting checks:
+## ✔️ Git Hooks & Pre-Commit Checks
+
+This project uses **Husky** and **lint-staged** to automatically enforce code quality before commits.
+
+When committing changes, staged files matching:
+
+```text
+*.js
+*.ts
+*.jsx
+*.tsx
+*.json
+*.css
+```
+
+are automatically checked and formatted using Biome:
 
 ```bash
-npx biome check .
+biome check --write --no-errors-on-unmatched
 ```
+
+This helps maintain consistent code style and prevents common issues from being committed to the repository.
 
 ## 🔄 Real-Time Functionality
 
