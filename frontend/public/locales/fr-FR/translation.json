@@ -1,8 +1,10 @@
 {
 	"Text": {
+		"404 Error": "Erreur 404",
 		"Abstract": "Abstrait",
 		"Accent theme": "Thème Accent",
 		"Add a splash of personality with a color that highlights actions and interactive elements": "Apportez une touche personnelle avec une couleur qui met en valeur les actions et les éléments interactifs.",
+		"Back to Home": "De retour à la maison",
 		"Backdrop": "Contexte",
 		"Chats": "Chats",
 		"Chats, photos, and reactions stay in sync—sign in on the right to continue": "Les discussions, les photos et les réactions restent synchronisées — connectez-vous à droite pour continuer.",
@@ -14,6 +16,7 @@
 		"No people match your search": "Aucun profil ne correspond à votre recherche.",
 		"Offline": "Hors ligne",
 		"Online": "En ligne",
+		"Oops, we couldn't find that page": "Oups, nous n'avons pas trouvé cette page.",
 		"Open": "Ouvrir",
 		"Pick a conversation from the list on the left to read messages and reply": "Sélectionnez une conversation dans la liste à gauche pour lire les messages et y répondre.",
 		"Private session": "Séance privée",
@@ -25,6 +28,7 @@
 		"Select a conversation": "Sélectionnez une conversation",
 		"Select Language": "Choisir la langue",
 		"Send a message": "Envoyer un message...",
+		"The link may be broken or the page may have been moved Try navigating back or visiting the homepage": "Le lien est peut-être rompu ou la page a peut-être été déplacée. Essayez de revenir en arrière ou de consulter la page d'accueil.",
 		"Today": "Aujourd'hui",
 		"Uploading media": "Chargement des médias...",
 		"Users": "Utilisateurs"
