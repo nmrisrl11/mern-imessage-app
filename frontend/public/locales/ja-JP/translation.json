@@ -1,8 +1,10 @@
 {
 	"Text": {
+		"404 Error": "404エラー",
 		"Abstract": "抽象的な",
 		"Accent theme": "アクセントテーマ",
 		"Add a splash of personality with a color that highlights actions and interactive elements": "アクションやインタラクティブな要素を際立たせる色を使って、個性をプラスしましょう。",
+		"Back to Home": "ホームに戻る",
 		"Backdrop": "背景幕",
 		"Chats": "チャット",
 		"Chats, photos, and reactions stay in sync—sign in on the right to continue": "チャット、写真、リアクションは常に同期されます。右側のログインボタンをクリックして続きをご覧ください。",
@@ -14,6 +16,7 @@
 		"No people match your search": "検索条件に一致する人物は見つかりませんでした。",
 		"Offline": "オフライン",
 		"Online": "オンライン",
+		"Oops, we couldn't find that page": "おっと、そのページは見つかりませんでした。",
 		"Open": "開ける",
 		"Pick a conversation from the list on the left to read messages and reply": "左側のリストから会話を選択して、メッセージを読んだり返信したりしてください。",
 		"Private session": "プライベートセッション",
@@ -25,6 +28,7 @@
 		"Select a conversation": "会話を選択",
 		"Select Language": "言語を選択する",
 		"Send a message": "メッセージを送信する...",
+		"The link may be broken or the page may have been moved Try navigating back or visiting the homepage": "リンクが切れているか、ページが移動した可能性があります。前のページに戻るか、ホームページにアクセスしてみてください。",
 		"Today": "今日",
 		"Uploading media": "メディアをアップロードしています...",
 		"Users": "ユーザー"

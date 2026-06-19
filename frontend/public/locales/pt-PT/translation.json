@@ -1,8 +1,10 @@
 {
 	"Text": {
+		"404 Error": "Erro 404",
 		"Abstract": "Abstrato",
 		"Accent theme": "Tema de destaque",
 		"Add a splash of personality with a color that highlights actions and interactive elements": "Adicione um toque de personalidade com uma cor que destaque as ações e os elementos interativos.",
+		"Back to Home": "De regresso a casa",
 		"Backdrop": "CENÁRIO",
 		"Chats": "Bate-papos",
 		"Chats, photos, and reactions stay in sync—sign in on the right to continue": "As conversas, fotografias e reações ficam sincronizadas — inicie sessão à direita para continuar.",
@@ -14,6 +16,7 @@
 		"No people match your search": "Nenhuma pessoa corresponde à sua pesquisa.",
 		"Offline": "Off-line",
 		"Online": "On-line",
+		"Oops, we couldn't find that page": "Ups, não conseguimos encontrar essa página.",
 		"Open": "Abrir",
 		"Pick a conversation from the list on the left to read messages and reply": "Selecione uma conversa da lista à esquerda para ler as mensagens e responder.",
 		"Private session": "Sessão privada",
@@ -25,6 +28,7 @@
 		"Select a conversation": "Selecione uma conversa",
 		"Select Language": "Selecione o idioma",
 		"Send a message": "Enviar uma mensagem...",
+		"The link may be broken or the page may have been moved Try navigating back or visiting the homepage": "O link pode estar quebrado ou a página pode ter sido movida. Tente voltar à página anterior ou visitar a página inicial.",
 		"Today": "Hoje",
 		"Uploading media": "Envio de mídia...",
 		"Users": "Usuários"

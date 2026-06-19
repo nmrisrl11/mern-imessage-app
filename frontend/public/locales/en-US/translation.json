@@ -1,8 +1,10 @@
 {
 	"Text": {
+		"404 Error": "404 Error",
 		"Abstract": "Abstract",
 		"Accent theme": "Accent theme",
 		"Add a splash of personality with a color that highlights actions and interactive elements": "Add a splash of personality with a color that highlights actions and interactive elements.",
+		"Back to Home": "Back to Home",
 		"Backdrop": "Backdrop",
 		"Chats": "Chats",
 		"Chats, photos, and reactions stay in sync—sign in on the right to continue": "Chats, photos, and reactions stay in sync—sign in on the right to continue.",
@@ -14,6 +16,7 @@
 		"No people match your search": "No people match your search.",
 		"Offline": "Offline",
 		"Online": "Online",
+		"Oops, we couldn't find that page": "Oops, we couldn't find that page",
 		"Open": "Open",
 		"Pick a conversation from the list on the left to read messages and reply": "Pick a conversation from the list on the left to read messages and reply.",
 		"Private session": "Private session",
@@ -25,6 +28,7 @@
 		"Select a conversation": "Select a conversation",
 		"Select Language": "Select Language",
 		"Send a message": "Send a message...",
+		"The link may be broken or the page may have been moved Try navigating back or visiting the homepage": "The link may be broken or the page may have been moved. Try navigating back or visiting the homepage.",
 		"Today": "Today",
 		"Uploading media": "Uploading media...",
 		"Users": "Users"
