@@ -1,37 +1,44 @@
 name: CI
 
 on:
-  push: #! Triggers the workflow whenever code is pushed directly to the 'main' branch.
-    branches: [ "main" ]
-  pull_request: #! Triggers the workflow whenever a Pull Request is opened or updated targeting the 'main' branch.
-    branches: [ "main" ]
+    push: #! Triggers the workflow whenever code is pushed directly to the 'main' branch.
+        branches: ["main"]
+    pull_request: #! Triggers the workflow whenever a Pull Request is opened or updated targeting the 'main' branch.
+        branches: ["main"]
 
 jobs: #! A workflow run is made up of one or more 'jobs' that can run sequentially or in parallel.
-  quality: #! Defining a single job here named 'quality' (this can be any label).
-    #! Specifies the virtual machine environment the job will execute on. 
-    #! 'ubuntu-latest' is the most common, cost-effective, and standard Linux environment for Node apps.
-    runs-on: ubuntu-latest
-    steps: #! 'steps' represents a sequence of tasks that will be executed as part of this job.
-      - name: Checkout code #! Step 1: Give the runner access to your code.
-        uses: actions/checkout@v4 #! Uses a pre-built GitHub Action created by the community/GitHub to securely clone your repository into the runner.
+    quality: #! Defining a single job here named 'quality' (this can be any label).
+        #! Specifies the virtual machine environment the job will execute on.
+        #! 'ubuntu-latest' is the most common, cost-effective, and standard Linux environment for Node apps.
+        runs-on: ubuntu-latest
+        steps: #! 'steps' represents a sequence of tasks that will be executed as part of this job.
+            - name: Checkout code #! Step 1: Give the runner access to your code.
+              uses: actions/checkout@v4 #! Uses a pre-built GitHub Action created by the community/GitHub to securely clone your repository into the runner.
 
-      - name: Setup Node.js #! Step 2: Install Node.js on the runner machine.
-        uses: actions/setup-node@v4 #! Uses the official setup-node action to download and configure a specific Node version.
-        with:
-          #! We specify version 22 to perfectly mirror the 'node:22-bookworm-slim' base image used in the Dockerfile. 
-          #! This prevents "works on my machine but breaks in CI" bugs.
-          node-version: '22'
-          #! Caches the ~/.npm directory globally across workflow runs. 
-          #! This drastically speeds up the installation step on subsequent runs.
-          cache: 'npm'
+            - name: Setup Node.js #! Step 2: Install Node.js on the runner machine.
+              uses: actions/setup-node@v4 #! Uses the official setup-node action to download and configure a specific Node version.
+              with:
+                  #! We specify version 22 to perfectly mirror the 'node:22-bookworm-slim' base image used in the Dockerfile.
+                  #! This prevents "works on my machine but breaks in CI" bugs.
+                  node-version: "22"
+                  #! Caches the ~/.npm directory globally across workflow runs.
+                  #! This drastically speeds up the installation step on subsequent runs.
+                  cache: "npm"
 
-      - name: Install dependencies #! Step 3: Install the project dependencies.
-        #! Runs a clean install. Unlike 'npm install', 'npm ci' bypasses package.json and strictly uses package-lock.json.
-        #! This guarantees the exact same dependency tree is installed, ensuring predictable builds.
-        run: npm ci
+            - name: Install dependencies #! Step 3: Install the project dependencies.
+              #! Runs a clean install. Unlike 'npm install', 'npm ci' bypasses package.json and strictly uses package-lock.json.
+              #! This guarantees the exact same dependency tree is installed, ensuring predictable builds.
+              run: npm ci
 
-      - name: Run Biome Check #! Step 4: Execute the Biome linting and formatting check.
-        #! Triggers the script we defined in package.json ("format:check": "biome check").
-        #! If this command exits with an error code (meaning Biome found violations it couldn't auto-fix or format issues), 
-        #! the entire GitHub Action will fail, alerting you to the problem.
-        run: npm run format:check
+            - name: Run Biome Check #! Step 4: Execute the Biome linting and formatting check.
+              #! Triggers the script we defined in package.json ("format:check": "biome check").
+              #! If this command exits with an error code (meaning Biome found violations it couldn't auto-fix or format issues),
+              #! the entire GitHub Action will fail, alerting you to the problem.
+              run: npm run format:check
+    deploy: #! Tells GitHub not to run this job unless 'quality' succeeds.
+        needs: quality
+        runs-on: ubuntu-latest
+        if: github.ref == 'refs/heads/main' #! Only deploy to production when code merges into main, not on every PR update.
+        steps:
+            - name: Trigger Render Deployment
+              run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
