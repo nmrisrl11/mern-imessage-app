@@ -5,18 +5,22 @@ on:
         branches: ["main"]
     pull_request: #! Triggers the workflow whenever a Pull Request is opened or updated targeting the 'main' branch.
         branches: ["main"]
-
+permissions: #! Restrict default GITHUB_TOKEN permissions to read-only for security hardening
+    contents: read
 jobs: #! A workflow run is made up of one or more 'jobs' that can run sequentially or in parallel.
     quality: #! Defining a single job here named 'quality' (this can be any label).
         #! Specifies the virtual machine environment the job will execute on.
         #! 'ubuntu-latest' is the most common, cost-effective, and standard Linux environment for Node apps.
         runs-on: ubuntu-latest
+        timeout-minutes: 10 #! Add a timeout limit to prevent runaway jobs from wasting build minutes
         steps: #! 'steps' represents a sequence of tasks that will be executed as part of this job.
             - name: Checkout code #! Step 1: Give the runner access to your code.
-              uses: actions/checkout@v4 #! Uses a pre-built GitHub Action created by the community/GitHub to securely clone your repository into the runner.
+              uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 #! Uses a pre-built GitHub Action created by the community/GitHub to securely clone your repository into the runner.
+              with:
+                  persist-credentials: false #! Prevents the GitHub token from lingering in the runner environment
 
             - name: Setup Node.js #! Step 2: Install Node.js on the runner machine.
-              uses: actions/setup-node@v4 #! Uses the official setup-node action to download and configure a specific Node version.
+              uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 #! Uses the official setup-node action to download and configure a specific Node version.
               with:
                   #! We specify version 22 to perfectly mirror the 'node:22-bookworm-slim' base image used in the Dockerfile.
                   #! This prevents "works on my machine but breaks in CI" bugs.
@@ -38,7 +42,11 @@ jobs: #! A workflow run is made up of one or more 'jobs' that can run sequential
     deploy: #! Tells GitHub not to run this job unless 'quality' succeeds.
         needs: quality
         runs-on: ubuntu-latest
+        timeout-minutes: 5
         if: github.ref == 'refs/heads/main' #! Only deploy to production when code merges into main, not on every PR update.
         steps:
             - name: Trigger Render Deployment
-              run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+              #! The '-f' / '--fail' flag to curl so the step properly fails
+              #! If Render returns a 4xx or 5xx HTTP error status code.
+              #! The '-sS' (silent but show errors) to keep the logs clean.
+              run: curl -f -sS -X POST ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
